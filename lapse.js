@@ -135,8 +135,8 @@ const rtprio = View2.of(RTP_PRIO_REALTIME, 0x100);
 const main_core = 7;
 const num_grooms = 0x200;
 const num_handles = 0x100;
-const num_sds = 0x100; // max is 0x100 due to max IPV6_TCLASS
-const num_alias = 150; //TODO: check best value here for 9.xx
+const num_sds = 0x80; // تقليل عدد الـ sockets المتزامنة
+const num_alias = 100; // تقليل عدد محاولات الـ alias
 const num_races = 200;
 const leak_len = 16;
 const num_leaks = 5;
@@ -378,7 +378,15 @@ function close(fd) {
 }
 
 function new_socket() {
-    return sysi('socket', AF_INET6, SOCK_DGRAM, IPPROTO_UDP);
+    try {
+        // إضافة تأخير قبل إنشاء socket جديد
+        sleep(50);
+        return sysi('socket', AF_INET6, SOCK_DGRAM, IPPROTO_UDP);
+    } catch (e) {
+        // في حالة الفشل، ننتظر قليلاً ونحاول مرة أخرى
+        sleep(200);
+        return sysi('socket', AF_INET6, SOCK_DGRAM, IPPROTO_UDP);
+    }
 }
 
 function new_tcp_socket() {

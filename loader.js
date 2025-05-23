@@ -1,46 +1,49 @@
-// تحسين تحميل البايلود مع إعادة المحاولة
+// تحسين تحميل البايلود مع إعادة المحاولة وتأخير
 function loadPayload(maxRetries = 3) {
     let retryCount = 0;
     
     function tryLoad() {
         return new Promise((resolve, reject) => {
-            fetch('./goldhen.bin')
-                .then(res => {
-                    res.arrayBuffer()
-                        .then(arr => {
-                            try {
-                                window.pld = new Uint32Array(arr);
-                                resolve();
-                            } catch(e) {
-                                if (retryCount < maxRetries) {
-                                    retryCount++;
-                                    console.log(`Retrying payload load... Attempt ${retryCount}`);
-                                    setTimeout(() => tryLoad().then(resolve).catch(reject), 500);
-                                } else {
-                                    reject(e);
+            // تأخير أولي قبل بدء التحميل
+            setTimeout(() => {
+                fetch('./goldhen.bin')
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error(`HTTP error! status: ${res.status}`);
+                        }
+                        return res.arrayBuffer();
+                    })
+                    .then(arr => {
+                        try {
+                            // تأخير قبل تحويل البيانات
+                            setTimeout(() => {
+                                try {
+                                    window.pld = new Uint32Array(arr);
+                                    // تأخير قبل اعتبار العملية ناجحة
+                                    setTimeout(() => resolve(), 300);
+                                } catch(e) {
+                                    handleError(e);
                                 }
-                            }
-                        })
-                        .catch(err => {
-                            if (retryCount < maxRetries) {
-                                retryCount++;
-                                console.log(`Retrying payload load... Attempt ${retryCount}`);
-                                setTimeout(() => tryLoad().then(resolve).catch(reject), 500);
-                            } else {
-                                reject(err);
-                            }
-                        });
-                })
-                .catch(err => {
-                    if (retryCount < maxRetries) {
-                        retryCount++;
-                        console.log(`Retrying payload load... Attempt ${retryCount}`);
-                        setTimeout(() => tryLoad().then(resolve).catch(reject), 500);
-                    } else {
-                        reject(err);
-                    }
-                });
+                            }, 200);
+                        } catch(e) {
+                            handleError(e);
+                        }
+                    })
+                    .catch(handleError);
+            }, 100);
         });
+
+        function handleError(err) {
+            console.error(`Load attempt ${retryCount + 1} failed:`, err);
+            if (retryCount < maxRetries) {
+                retryCount++;
+                console.log(`Retrying payload load... Attempt ${retryCount}`);
+                // زيادة وقت الانتظار مع كل محاولة
+                setTimeout(() => tryLoad().then(resolve).catch(reject), 500 * retryCount);
+            } else {
+                reject(err);
+            }
+        }
     }
 
     return tryLoad();
