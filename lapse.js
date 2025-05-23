@@ -1749,7 +1749,7 @@ async function patch_kernel(kbase, kmem, p_ucred, restore_info) {
 
     log('setuid(0)');
     sysi('setuid', 0);
-    showMessage("done يا عتاولة !..."),    
+    showMessage("Done !..."),    
     log('kernel exploit succeeded!');
     localStorage.passcount = ++localStorage.passcount;window.passCounter.innerHTML=localStorage.passcount;    
     //alert("kernel exploit succeeded!");
