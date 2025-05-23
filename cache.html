@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="84ciss.manifest">
+<html manifest="ifayed.manifest">
 <title>هوست العتاولة - PS4 9.00</title>
 <script>history.replaceState(null,null,'cache.html');</script>
 <head>
@@ -55,7 +55,7 @@
                     count--;
                     if (count <= 0) {
                         clearInterval(countInterval);
-                        window.location.replace("lndex.html");
+                        window.location.replace("index.html");
                     } else {
                         countdownEl.innerHTML = `سيتم الانتقال بعد ${count} ثواني...`;
                     }
@@ -70,7 +70,6 @@
                 document.getElementById("progress").innerHTML="بدء تثبيت التخزين المؤقت!";
                 localStorage.is755BCached=false;
                 
-                // إعادة تعيين العداد عند بدء التحميل
                 document.getElementById('loadingCounter').textContent = "0";
             };
             
@@ -79,7 +78,6 @@
                 const now = Date.now();
                 const progress = Math.round(100*(a.loaded/a.total));
                 
-                // تحديث كل 200 مللي ثانية فقط لتقليل الحمل
                 if (now - lastUpdate >= 200 || progress === 100) {
                     lastUpdate = now;
                     requestAnimationFrame(() => {
@@ -94,7 +92,6 @@
                 clearInterval(counterInterval);
                 document.getElementById("progress").innerHTML="تم تثبيت التخزين المؤقت بنجاح!";
                 localStorage.is755BCached=true;
-                // إضافة تأخير قبل الانتقال للصفحة التالية
                 setTimeout(() => {
                     startCountdown(5);
                 }, 1000);
@@ -108,11 +105,11 @@
             };
             
             window.applicationCache.onnoupdate=function(){
-                window.location.replace("lndex.html");
+                window.location.replace("index.html");
             };
             
             window.applicationCache.onerror=function(){
-                window.location.replace("lndex.html");
+                window.location.replace("index.html");
             };
         </script>
         

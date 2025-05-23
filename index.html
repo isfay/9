@@ -1,137 +1,88 @@
 <!DOCTYPE html>
-<html manifest="84ciss.manifest">
-<title>الهوست العربي - PS4 9.00</title>
-<script>history.replaceState(null,null,'index.html');</script>
+<html>
 <head>
-<meta charset='utf-8'>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+    <title>الهوست العربي - PS4 9.00</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function showMessage(msg) {
+            document.getElementById("message").innerHTML = msg;
+        }
+    </script>
+    <script src="loader.js"></script>
+    <script type=module src="psfree.js"></script>
 </head>
-
 <body>
     <div class="container">
-        <div class="header" style="flex-direction: row; justify-content: space-between; align-items: center;">
+        <div class="header" style="flex-direction: row; justify-content: space-between; align-items: center; padding: 15px;">
             <div class="offline-badge" style="width: auto; text-align: left; order: 1;">
-                <span class="offline-text">أوف لاين</span>
-                <span class="no-flash-text">بدون فلاشة</span>
+                <span class="offline-text" style="font-size: 24px;">أوف لاين</span>
+                <span class="no-flash-text" style="font-size: 18px;">بدون فلاشة</span>
             </div>
-            <img src="profile.jpg" class="profile-image" alt="Profile" style="order: 2; margin: 0; width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+            <div class="profile-image" style="order: 2; margin: 0; width: 50px; height: 50px; border-radius: 50%; overflow: hidden;">
+                <img src="profile.jpg" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
             <div class="animated-title-container" style="width: auto; text-align: right; order: 3;">
-                <h1 id="msgs" class="animated-title">الهوست العربي<br><span class="subtitle-ps4">PS4 9.00</span></h1>
+                <h1 class="animated-title" style="font-size: 32px;">هوست العتاولة<br><span class="subtitle-ps4" style="font-size: 28px;">PS4 9.00</span></h1>
             </div>
         </div>
         
-        <div class="warning" style="transform: scale(0.7); transform-origin: top center; margin: 10px auto -40px auto;">
-            <strong style="font-size: 16px;">تنبيه هام</strong> 
-            <ul style="font-size: 14px; padding-right: 20px;">
-                <li>الهوست يعمل بدون فلاشة للتعديل </li>
-                <li>الهوست اوف لاين و اون لاين  عايز اوف لاين بعد ما يعمل كاش اخرج واقفل النت وارجع هيشتغل معاك</li>
-                <li>اوقات ممكن الجهاز يطفي او يعمل كراش ارجع شغل الجهاز وحول تاني هيشتغل</li>
-                <li>التعديل تحتوي علي احدث جولد هين وبيتم التحديث ديما </li>
-                <li>التعديل لسوفت 9.00 قريبا اصدار 9.60 استني </li>
-            </ul>
-        </div>
+        <div id='console' style="font-size: 16px; margin: 15px auto;"></div>
         
-        <div class="loading-container" style="margin-top: -60px; transform: scale(0.6); transform-origin: top center;">
-            <div class="loading-box" style="max-width: 60%;">
-                <div class="progress-container">
-                    <div class="progress-bar" id="myBar">0%</div>
-                </div>
-                <div class="loading-counter" id="loadingCounter" style="font-size: 14px;">0</div>
-            </div>
-            <h1 id="progress" class="loading-text" style="font-size: 16px;">جاري بدء تثبيت التخزين المؤقت...</h1>
-            <div id="countdown" class="countdown-text" style="font-size: 14px;"></div>
+        <div class="prayer-box" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 15px; padding: 20px; margin: 20px auto; max-width: 80%; box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); animation: glow 2s infinite ease-in-out;">
+            <h1 style="font-size: 26px; margin: 0; color: #ffffff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">الدعاء لوالدة اسلام فايد بالرحمة</h1>
+            <div style="width: 50%; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent); margin: 15px auto;"></div>
+            <h2 class="subtitle" style="font-size: 20px; margin: 10px 0 0 0; color: rgba(255, 255, 255, 0.9);">اللهم ارحمها رحمة واسعة</h2>
         </div>
-        
-        <script>
-            function startCountdown(seconds) {
-                const countdownEl = document.getElementById('countdown');
-                let count = seconds;
-                countdownEl.innerHTML = `سيتم الانتقال بعد ${count} ثواني...`;
-                
-                const countInterval = setInterval(() => {
-                    count--;
-                    if (count <= 0) {
-                        clearInterval(countInterval);
-                        window.location.replace("lndex.html");
-                    } else {
-                        countdownEl.innerHTML = `سيتم الانتقال بعد ${count} ثواني...`;
-                    }
-                }, 1000);
+        <style>
+            @keyframes glow {
+                0% { box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); }
+                50% { box-shadow: 0 0 35px rgba(255, 255, 255, 0.4); }
+                100% { box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); }
             }
-
-            let counterInterval;
-            
-            if(window.applicationCache.status==2){localStorage.is755BCached=true;};
-            
-            window.applicationCache.ondownloading=function(){
-                document.getElementById("progress").innerHTML="بدء تثبيت التخزين المؤقت!";
-                localStorage.is755BCached=false;
-                
-                // إعادة تعيين العداد عند بدء التحميل
-                document.getElementById('loadingCounter').textContent = "0";
-            };
-            
-            let lastUpdate = 0;
-            window.applicationCache.onprogress=function(a){
-                const now = Date.now();
-                const progress = Math.round(100*(a.loaded/a.total));
-                
-                // تحديث كل 200 مللي ثانية فقط لتقليل الحمل
-                if (now - lastUpdate >= 200 || progress === 100) {
-                    lastUpdate = now;
-                    requestAnimationFrame(() => {
-                        document.getElementById("myBar").style.width = progress + "%";
-                        document.getElementById("myBar").innerHTML = progress + "%";
-                        document.getElementById('loadingCounter').textContent = progress;
-                    });
-                }
-            };
-            
-            window.applicationCache.oncached=function(){
-                clearInterval(counterInterval);
-                document.getElementById("progress").innerHTML="تم تثبيت التخزين المؤقت بنجاح!";
-                localStorage.is755BCached=true;
-                // إضافة تأخير قبل الانتقال للصفحة التالية
-                setTimeout(() => {
-                    startCountdown(5);
-                }, 1000);
-            };
-            
-            window.applicationCache.onupdateready=function(){
-                clearInterval(counterInterval);
-                document.getElementById("progress").innerHTML="تم تحديث التخزين المؤقت بنجاح!";
-                localStorage.is755BCached=true;
-                startCountdown(5);
-            };
-            
-            window.applicationCache.onnoupdate=function(){
-                window.location.replace("lndex.html");
-            };
-            
-            window.applicationCache.onerror=function(){
-                window.location.replace("lndex.html");
-            };
-        </script>
+        </style>
         
-        <div style="margin-top: 100px;"></div>
-        <div class="footer">
-            <div class="footer-content">
-                <div class="footer-item">
-                    <span class="footer-highlight" style="font-size: 22px;">تابعني على: </span>
-                    <div class="social-buttons">
-                        <a href="https://www.youtube.com/c/ISLAMFAYED" class="social-btn social-btn-youtube">YouTube</a>
-                        <a href="https://www.instagram.com/islamfayeed/" class="social-btn social-btn-instagram">Instagram</a>
-                        <a href="https://www.tiktok.com/@isfayed" class="social-btn social-btn-tiktok">TikTok</a>
-                        <a href="https://www.facebook.com/IsFayed/?_rdc=1" class="social-btn social-btn-facebook">Facebook</a>
+        <div id="message" class="message-box" style="margin: 30px auto; font-size: 22px; text-align: center; padding: 20px;">
+            جاري التعديل .. <span class="highlight-text">انت من العتاولة يا وحش</span>
+        </div>
+        
+        <div style="height: 40px;"></div>
+        
+        <div class="footer" style="position: fixed; bottom: 0; left: 0; right: 0; background: rgba(13, 17, 23, 0.95);">
+            <div class="footer-content" style="padding: 10px; display: flex; justify-content: space-around; align-items: center;">
+                <div class="footer-item footer-stats" style="padding: 8px 15px; margin: 5px;">
+                    <span class="footer-highlight" style="font-size: 18px;">مبروك </span>
+                    <span class="success-count glow-success" id="passCounter" style="font-size: 20px;"></span>
+                    <span class="footer-divider" style="margin: 0 10px;">|</span>
+                    <span class="footer-highlight" style="font-size: 18px;">اوبس!! </span>
+                    <span class="fail-count glow-fail" id="failCounter" style="font-size: 20px;"></span>
+                </div>
+                
+                <div class="footer-item" style="margin: 5px;">
+                    <div class="social-buttons" style="display: flex; gap: 10px;">
+                        <a href="https://www.youtube.com/c/ISLAMFAYED" class="social-btn social-btn-youtube" style="font-size: 16px; padding: 8px 15px;">YouTube</a>
+                        <a href="https://www.instagram.com/islamfayeed/" class="social-btn social-btn-instagram" style="font-size: 16px; padding: 8px 15px;">Instagram</a>
+                        <a href="https://www.tiktok.com/@isfayed" class="social-btn social-btn-tiktok" style="font-size: 16px; padding: 8px 15px;">TikTok</a>
+                        <a href="https://www.facebook.com/IsFayed/?_rdc=1" class="social-btn social-btn-facebook" style="font-size: 16px; padding: 8px 15px;">Facebook</a>
                     </div>
                 </div>
-                <div class="footer-item">
-                    <span class="footer-highlight" style="font-size: 22px;">رجاء خاص: </span>
-                    <span style="font-size: 20px; font-family: 'Arabic', serif; letter-spacing: 0.5px;">*الدعاء لوالدة اسلام فايد بالرحمة*</span>
+                
+                <div class="footer-item" style="margin: 5px;">
+                    <span style="font-size: 16px; font-family: 'Arabic', serif;">*Designed by:Islam Fayed *</span>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        if (localStorage.passcount == null || localStorage.passcount == undefined) localStorage.passcount = 0;
+        if (localStorage.passCounter == null || localStorage.passCounter == undefined) {
+          passCounter.innerHTML = localStorage.passcount;
+        }
+        if (localStorage.failcount == null || localStorage.failcount == undefined) localStorage.failcount = 0;
+        if (localStorage.failCounter == null || localStorage.failCounter == undefined) {
+          failCounter.innerHTML = localStorage.failcount;
+        }
+    </script>
 </body>
 </html>
