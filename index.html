@@ -35,97 +35,10 @@
             if(window.applicationCache.status==2){localStorage.is755BCached=true;};
             window.applicationCache.ondownloading=function(){document.getElementById("progress").innerHTML="بدء تثبيت التخزين المؤقت!";localStorage.is755BCached=false;};
             window.applicationCache.onprogress=function(a){document.getElementById("myBar").style.width=(Math.round(100*(a.loaded/a.total)))+"%";document.getElementById("myBar").innerHTML=(Math.round(100*(a.loaded/a.total)))+"%";};
-            window.applicationCache.oncached=function(){
-                document.getElementById("progress").innerHTML="تم تثبيت التخزين المؤقت بنجاح!";
-                localStorage.is755BCached=true;
-                setTimeout(function(){
-                    showConfirmDialog();
-                }, 1500);
-            };
-            
-            window.applicationCache.onupdateready=function(){
-                document.getElementById("progress").innerHTML="تم تحديث التخزين المؤقت بنجاح!";
-                localStorage.is755BCached=true;
-                setTimeout(function(){
-                    showConfirmDialog();
-                }, 1500);
-            };
-            
-            window.applicationCache.onnoupdate=function(){
-                showConfirmDialog();
-            };
-            
-            window.applicationCache.onerror=function(){
-                showConfirmDialog();
-            };
-            
-            function showConfirmDialog() {
-                // إنشاء عناصر نافذة التأكيد
-                var overlay = document.createElement('div');
-                overlay.className = 'confirm-overlay';
-                
-                var dialog = document.createElement('div');
-                dialog.className = 'confirm-dialog';
-                
-                var message = document.createElement('div');
-                message.className = 'confirm-message';
-                message.innerHTML = '<h2>هل تريد الانتقال إلى صفحة التفعيل الآن؟</h2>';
-                
-                var buttons = document.createElement('div');
-                buttons.className = 'confirm-buttons';
-                
-                var yesBtn = document.createElement('button');
-                yesBtn.className = 'confirm-btn confirm-yes';
-                yesBtn.textContent = 'نعم';
-                yesBtn.onclick = function() {
-                    overlay.remove();
-                    window.location.replace("lndex.html");
-                };
-                
-                var noBtn = document.createElement('button');
-                noBtn.className = 'confirm-btn confirm-no';
-                noBtn.textContent = 'لا';
-                noBtn.onclick = function() {
-                    overlay.remove();
-                    showOfflineDialog();
-                };
-                
-                buttons.appendChild(yesBtn);
-                buttons.appendChild(noBtn);
-                
-                dialog.appendChild(message);
-                dialog.appendChild(buttons);
-                overlay.appendChild(dialog);
-                document.body.appendChild(overlay);
-            }
-            
-            function showOfflineDialog() {
-                // إنشاء عناصر نافذة الإرشادات
-                var overlay = document.createElement('div');
-                overlay.className = 'confirm-overlay';
-                
-                var dialog = document.createElement('div');
-                dialog.className = 'confirm-dialog';
-                
-                var message = document.createElement('div');
-                message.className = 'confirm-message';
-                message.innerHTML = '<h2>تعليمات هامة</h2>' +
-                    '<p>1. اغلق المتصفح تماماً</p>' +
-                    '<p>2. قم بإيقاف الاتصال بالإنترنت</p>' +
-                    '<p>3. افتح المتصفح مرة أخرى للتفعيل</p>';
-                
-                var okBtn = document.createElement('button');
-                okBtn.className = 'confirm-btn confirm-ok';
-                okBtn.textContent = 'موافق';
-                okBtn.onclick = function() {
-                    window.close();
-                };
-                
-                dialog.appendChild(message);
-                dialog.appendChild(okBtn);
-                overlay.appendChild(dialog);
-                document.body.appendChild(overlay);
-            }
+            window.applicationCache.oncached=function(){document.getElementById("progress").innerHTML="تم تثبيت التخزين المؤقت بنجاح!";localStorage.is755BCached=true;setTimeout(function(){window.location.replace("lndex.html"); }, 1500);};
+            window.applicationCache.onupdateready=function(){document.getElementById("progress").innerHTML="Update Cache Successfully!!";localStorage.is755BCached=true;setTimeout(function(){window.location.reload("myBar"); }, 1500);};
+            window.applicationCache.onnoupdate=function(){window.location.replace("lndex.html");};
+            window.applicationCache.onerror=function(){window.location.replace("lndex.html");};
         </script>
         
         <div class="footer">
