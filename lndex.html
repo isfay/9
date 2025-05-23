@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PS4 Auto Jailbreak (Psfree-1.5rc1 & Lapse)</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function showMessage(msg) {
+            document.getElementById("message").innerHTML = msg;
+        }
+    </script>
+    <script src="loader.js"></script>
+    <script type=module src="psfree.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><span class="brand-number">4</span><span class="brand-text">GAMER</span> المضيف الجديد PSFREE بدون فلاش 9.00</h1>
+        </div>
+        
+        <div id='console'></div>
+        
+        <h1 class="title-emphasis">كسر حماية PS4 التلقائي</h1>
+        <div>
+            <h2 class="subtitle">جولدهن إصدار 9.00</h2>
+        </div>
+        
+        <div id="message" class="message-box">
+            جاري كسر الحماية. يرجى <span class="highlight-text">الانتظار!!!</span>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-item footer-stats">
+                    <span class="footer-highlight">نجاح = </span><span class="success-count" id="passCounter"></span>
+                    <span class="footer-divider">|</span>
+                    <span class="footer-highlight">فشل = </span><span class="fail-count" id="failCounter"></span>
+                </div>
+                
+                <div class="footer-item">
+                    <span class="footer-highlight">تابعني على: </span>
+                    <div class="social-buttons">
+                        <a href="https://www.youtube.com/c/ISLAMFAYED" class="social-btn social-btn-youtube">YouTube</a>
+                        <a href="https://www.instagram.com/islamfayeed/" class="social-btn social-btn-instagram">Instagram</a>
+                        <a href="https://www.tiktok.com/@isfayed" class="social-btn social-btn-tiktok">TikTok</a>
+                        <a href="https://www.facebook.com/IsFayed/?_rdc=1" class="social-btn social-btn-facebook">Facebook</a>
+                    </div>
+                </div>
+                
+                <div class="footer-item">
+                    <span class="footer-highlight">شكر خاص: </span>
+                    <span>*شكراً لجميع المساهمين في مجتمع PS4 ∆❍X❑*</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        if (localStorage.passcount == null || localStorage.passcount == undefined) localStorage.passcount = 0;
+        if (localStorage.passCounter == null || localStorage.passCounter == undefined) {
+          passCounter.innerHTML = localStorage.passcount;
+        }
+        if (localStorage.failcount == null || localStorage.failcount == undefined) localStorage.failcount = 0;
+        if (localStorage.failCounter == null || localStorage.failCounter == undefined) {
+          failCounter.innerHTML = localStorage.failcount;
+        }
+    </script>
+</body>
+</html>
