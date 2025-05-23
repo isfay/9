@@ -72,18 +72,30 @@
                 document.getElementById('loadingCounter').textContent = "0";
             };
             
+            let lastUpdate = 0;
             window.applicationCache.onprogress=function(a){
+                const now = Date.now();
                 const progress = Math.round(100*(a.loaded/a.total));
-                document.getElementById("myBar").style.width = progress + "%";
-                document.getElementById("myBar").innerHTML = progress + "%";
-                document.getElementById('loadingCounter').textContent = progress;
+                
+                // تحديث كل 200 مللي ثانية فقط لتقليل الحمل
+                if (now - lastUpdate >= 200 || progress === 100) {
+                    lastUpdate = now;
+                    requestAnimationFrame(() => {
+                        document.getElementById("myBar").style.width = progress + "%";
+                        document.getElementById("myBar").innerHTML = progress + "%";
+                        document.getElementById('loadingCounter').textContent = progress;
+                    });
+                }
             };
             
             window.applicationCache.oncached=function(){
                 clearInterval(counterInterval);
                 document.getElementById("progress").innerHTML="تم تثبيت التخزين المؤقت بنجاح!";
                 localStorage.is755BCached=true;
-                startCountdown(5);
+                // إضافة تأخير قبل الانتقال للصفحة التالية
+                setTimeout(() => {
+                    startCountdown(5);
+                }, 1000);
             };
             
             window.applicationCache.onupdateready=function(){
