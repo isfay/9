@@ -41,17 +41,19 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arabic', Arial, sans-serif;
-    line-height: 1.6;
+    line-height: 1.8;
     color: #ffffff;
+    font-size: 18px;
 }
 
 h1 {
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    font-size: 28px;
+    font-size: 32px;
     color: white;
     font-family: 'Arabic', Arial, sans-serif;
     margin: 0;
     padding: 15px 0;
+    letter-spacing: 0.5px;
 }
 
 a {
@@ -89,6 +91,10 @@ a:hover {
     padding: 20px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .header::before {
@@ -100,6 +106,127 @@ a:hover {
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
     animation: glow-line 3s infinite;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 195, 255, 0.5);
+    animation: image-glow 3s infinite;
+    object-fit: cover;
+}
+
+@keyframes image-glow {
+    0% { box-shadow: 0 0 15px rgba(0, 195, 255, 0.5); }
+    50% { box-shadow: 0 0 25px rgba(0, 195, 255, 0.8), 0 0 15px rgba(125, 66, 255, 0.5); }
+    100% { box-shadow: 0 0 15px rgba(0, 195, 255, 0.5); }
+}
+
+.animated-title-container {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.animated-title {
+    font-size: 42px;
+    font-weight: bold;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--success-color), var(--warning-color));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 8s ease infinite, pulse-shadow 2s infinite;
+    text-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
+    padding: 15px 25px;
+    border: 2px solid transparent;
+    border-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    border-image-slice: 1;
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    letter-spacing: 1px;
+    line-height: 1.3;
+}
+
+.subtitle-ps4 {
+    font-size: 36px;
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+    letter-spacing: 2px;
+}
+
+.offline-badge {
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.offline-text {
+    font-family: 'Arial', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--warning-color);
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    transform: rotate(-5deg);
+    letter-spacing: 1px;
+    animation: glow-text 2s infinite;
+    margin: 0 10px;
+}
+
+.no-flash-text {
+    font-family: 'Arabic', sans-serif;
+    font-size: 24px;
+    color: white;
+    display: inline-block;
+    margin: 0 10px;
+    transform: rotate(-5deg);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes glow-text {
+    0% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+    50% { text-shadow: 0 0 15px var(--warning-color), 0 0 20px var(--warning-color); }
+    100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+}
+
+.animated-title::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 1px solid rgba(0, 195, 255, 0.3);
+    border-radius: 5px;
+    animation: border-pulse 2s infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-shadow {
+    0% { text-shadow: 0 0 10px rgba(0, 195, 255, 0.3); }
+    50% { text-shadow: 0 0 20px rgba(0, 195, 255, 0.6), 0 0 30px rgba(0, 195, 255, 0.4); }
+    100% { text-shadow: 0 0 10px rgba(0, 195, 255, 0.3); }
+}
+
+@keyframes border-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 195, 255, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 195, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 195, 255, 0); }
 }
 
 @keyframes glow-line {
@@ -215,8 +342,8 @@ a:hover {
 .warning {
     background: linear-gradient(135deg, rgba(255, 62, 127, 0.1) 0%, rgba(255, 0, 0, 0.1) 100%);
     border: 1px solid rgba(255, 62, 127, 0.3);
-    padding: 20px;
-    margin: 20px auto;
+    padding: 25px;
+    margin: 25px auto;
     border-radius: 10px;
     text-align: right;
     color: white;
@@ -224,12 +351,13 @@ a:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
+    font-size: 20px;
 }
 
 .warning strong {
     display: block;
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 24px;
+    margin-bottom: 15px;
     color: var(--secondary-color);
     text-shadow: 0 0 5px rgba(255, 62, 127, 0.5);
 }
@@ -240,8 +368,9 @@ a:hover {
 }
 
 .warning li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     position: relative;
+    line-height: 1.7;
 }
 
 .warning li::before {
@@ -265,24 +394,62 @@ a:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+.loading-container {
+    max-width: 600px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.loading-box {
+    background-color: rgba(10, 15, 20, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 195, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-box::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--success-color));
+    background-size: 400% 400%;
+    animation: gradient-border 3s ease infinite;
+    z-index: -1;
+    border-radius: 17px;
+}
+
+@keyframes gradient-border {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 .progress-container {
     width: 100%;
     background-color: rgba(10, 15, 20, 0.5);
     border-radius: 10px;
-    margin: 30px 0;
+    margin: 15px 0;
     overflow: hidden;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(0, 195, 255, 0.2);
+    height: 20px;
 }
 
 .progress-bar {
     width: 0%;
-    height: 30px;
+    height: 100%;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
     text-align: center;
-    line-height: 30px;
+    line-height: 20px;
     color: white;
     font-weight: bold;
+    font-size: 14px;
     transition: width 0.5s ease;
     position: relative;
     overflow: hidden;
@@ -296,7 +463,38 @@ a:hover {
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    animation: progress-shine 2s infinite;
+    animation: progress-shine 1s infinite;
+}
+
+.loading-counter {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 15px 0;
+    text-shadow: 0 0 10px rgba(0, 195, 255, 0.7);
+    animation: pulse 1s infinite;
+}
+
+.loading-text {
+    font-size: 24px;
+    margin: 15px 0;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.countdown-text {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--warning-color);
+    margin: 15px 0;
+    text-shadow: 0 0 10px rgba(255, 145, 0, 0.5);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
 }
 
 @keyframes progress-shine {
@@ -532,6 +730,104 @@ a:hover {
     font-style: italic;
 }
 
+/* Confirm Dialog Styles */
+.confirm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.confirm-dialog {
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(15, 20, 30, 0.95) 100%);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 195, 255, 0.3);
+    text-align: center;
+    animation: dialog-appear 0.3s ease-out;
+}
+
+@keyframes dialog-appear {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.confirm-message {
+    margin-bottom: 25px;
+}
+
+.confirm-message h2 {
+    color: var(--primary-color);
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
+}
+
+.confirm-message p {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #ffffff;
+}
+
+.confirm-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.confirm-btn {
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Arabic', Arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    color: white;
+}
+
+.confirm-yes {
+    background: linear-gradient(135deg, var(--success-color) 0%, #00b359 100%);
+    box-shadow: 0 4px 15px rgba(0, 179, 89, 0.3);
+}
+
+.confirm-yes:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(0, 179, 89, 0.5);
+}
+
+.confirm-no {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #d42a01 100%);
+    box-shadow: 0 4px 15px rgba(255, 62, 127, 0.3);
+}
+
+.confirm-no:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(255, 62, 127, 0.5);
+}
+
+.confirm-ok {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    box-shadow: 0 4px 15px rgba(0, 195, 255, 0.3);
+}
+
+.confirm-ok:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(0, 195, 255, 0.5);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
@@ -568,5 +864,18 @@ a:hover {
     
     .footer-item {
         margin: 5px 0;
+    }
+    
+    .confirm-dialog {
+        padding: 20px;
+    }
+    
+    .confirm-message h2 {
+        font-size: 24px;
+    }
+    
+    .confirm-btn {
+        padding: 10px 20px;
+        font-size: 18px;
     }
 }

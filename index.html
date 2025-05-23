@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html manifest="84ciss.manifest">
-<title>4GAMER المضيف الجديد PSFREE بدون فلاش 9.00</title>
+<title>الهوست العربي - PS4 9.00</title>
 <script>history.replaceState(null,null,'index.html');</script>
 <head>
 <meta charset='utf-8'>
@@ -10,35 +10,96 @@
 
 <body>
     <div class="container">
-        <div class="header">
-            <h1 id="msgs"><span class="brand-number">4</span><span class="brand-text">GAMER</span> المضيف الجديد PSFREE بدون فلاش 9.00</h1>
+        <div class="header" style="flex-direction: row; justify-content: space-between; align-items: center;">
+            <div class="offline-badge" style="width: auto; text-align: left; order: 1;">
+                <span class="offline-text">أوف لاين</span>
+                <span class="no-flash-text">بدون فلاشة</span>
+            </div>
+            <img src="me.jpg" class="profile-image" alt="Profile" style="order: 2; margin: 0;">
+            <div class="animated-title-container" style="width: auto; text-align: right; order: 3;">
+                <h1 id="msgs" class="animated-title">الهوست العربي<br><span class="subtitle-ps4">PS4 9.00</span></h1>
+            </div>
         </div>
         
         <div class="warning">
             <strong>تنبيه هام</strong> 
             <ul>
-                <li>الثغرة الجديدة لا تحتاج إلى فلاش USB</li>
-                <li>في حال ظهور أي واجهة تحتوي على زر "موافق" أو "إغلاق الصفحة"، قم بالضغط على "موافق" بدون تردد</li>
-                <li>انتظر حتى اكتمال تثبيت التخزين المؤقت بنسبة 100%</li>
-                <li>تم تحسين آلية التخزين المؤقت للصفحة لضمان عملها بشكل أفضل</li>
-                <li>بعد اكتمال التثبيت، أغلق المتصفح وافتحه مرة أخرى للاستخدام بدون إنترنت</li>
+                <li>الهوست يعمل بدون فلاشة للتعديل </li>
+                <li>الهوست اوف لاين و اون لاين  عايز اوف لاين بعد ما يعمل كاش اخرج واقفل النت وارجع هيشتغل معاك</li>
+                <li>اوقات ممكن الجهاز يطفي او يعمل كراش ارجع شغل الجهاز وحول تاني هيشتغل</li>
+                <li>التعديل تحتوي علي احدث جولد هين وبيتم التحديث ديما </li>
+                <li>التعديل لسوفت 9.00 قريبا اصدار 9.60 استني </li>
             </ul>
         </div>
         
-        <div class="progress-container">
-            <div class="progress-bar" id="myBar">0%</div>
+        <div class="loading-container">
+            <div class="loading-box">
+                <div class="progress-container">
+                    <div class="progress-bar" id="myBar">0%</div>
+                </div>
+                <div class="loading-counter" id="loadingCounter">0</div>
+            </div>
+            <h1 id="progress" class="loading-text">جاري بدء تثبيت التخزين المؤقت...</h1>
+            <div id="countdown" class="countdown-text"></div>
         </div>
         
-        <h1 id="progress">جاري بدء تثبيت التخزين المؤقت...</h1>
-        
         <script>
+            function startCountdown(seconds) {
+                const countdownEl = document.getElementById('countdown');
+                let count = seconds;
+                countdownEl.innerHTML = `سيتم الانتقال بعد ${count} ثواني...`;
+                
+                const countInterval = setInterval(() => {
+                    count--;
+                    if (count <= 0) {
+                        clearInterval(countInterval);
+                        window.location.replace("lndex.html");
+                    } else {
+                        countdownEl.innerHTML = `سيتم الانتقال بعد ${count} ثواني...`;
+                    }
+                }, 1000);
+            }
+
+            let counterInterval;
+            
             if(window.applicationCache.status==2){localStorage.is755BCached=true;};
-            window.applicationCache.ondownloading=function(){document.getElementById("progress").innerHTML="بدء تثبيت التخزين المؤقت!";localStorage.is755BCached=false;};
-            window.applicationCache.onprogress=function(a){document.getElementById("myBar").style.width=(Math.round(100*(a.loaded/a.total)))+"%";document.getElementById("myBar").innerHTML=(Math.round(100*(a.loaded/a.total)))+"%";};
-            window.applicationCache.oncached=function(){document.getElementById("progress").innerHTML="تم تثبيت التخزين المؤقت بنجاح!";localStorage.is755BCached=true;setTimeout(function(){window.location.replace("lndex.html"); }, 1500);};
-            window.applicationCache.onupdateready=function(){document.getElementById("progress").innerHTML="Update Cache Successfully!!";localStorage.is755BCached=true;setTimeout(function(){window.location.reload("myBar"); }, 1500);};
-            window.applicationCache.onnoupdate=function(){window.location.replace("lndex.html");};
-            window.applicationCache.onerror=function(){window.location.replace("lndex.html");};
+            
+            window.applicationCache.ondownloading=function(){
+                document.getElementById("progress").innerHTML="بدء تثبيت التخزين المؤقت!";
+                localStorage.is755BCached=false;
+                
+                // إعادة تعيين العداد عند بدء التحميل
+                document.getElementById('loadingCounter').textContent = "0";
+            };
+            
+            window.applicationCache.onprogress=function(a){
+                const progress = Math.round(100*(a.loaded/a.total));
+                document.getElementById("myBar").style.width = progress + "%";
+                document.getElementById("myBar").innerHTML = progress + "%";
+                document.getElementById('loadingCounter').textContent = progress;
+            };
+            
+            window.applicationCache.oncached=function(){
+                clearInterval(counterInterval);
+                document.getElementById("progress").innerHTML="تم تثبيت التخزين المؤقت بنجاح!";
+                localStorage.is755BCached=true;
+                startCountdown(5);
+            };
+            
+            window.applicationCache.onupdateready=function(){
+                clearInterval(counterInterval);
+                document.getElementById("progress").innerHTML="تم تحديث التخزين المؤقت بنجاح!";
+                localStorage.is755BCached=true;
+                startCountdown(5);
+            };
+            
+            window.applicationCache.onnoupdate=function(){
+                window.location.replace("lndex.html");
+            };
+            
+            window.applicationCache.onerror=function(){
+                window.location.replace("lndex.html");
+            };
         </script>
         
         <div class="footer">
