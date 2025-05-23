@@ -1,5 +1,5 @@
 CACHE MANIFEST 
-#VERSION 1.1 
+#VERSION 1.2 
 
 CACHE:
 
@@ -16,10 +16,11 @@ module/chain.js
 goldhen.bin
 fonts/LiberationMono-Regular.ttf
 fonts/Tajawal-Regular.ttf
-img.jpg
+islambg.jpg
+profile.jpg
 style.css
 lndex.html
-index.html
+cache.html
 psfree.js
 lapse.js
 send.js

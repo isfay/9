@@ -20,7 +20,9 @@
                 <span class="offline-text">أوف لاين</span>
                 <span class="no-flash-text">بدون فلاشة</span>
             </div>
-            <img src="profile.jpg" class="profile-image" alt="Profile" style="order: 2; margin: 0; width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+            <div class="profile-image" style="order: 2; margin: 0; width: 60px; height: 60px; border-radius: 50%; overflow: hidden;">
+                <img src="profile.jpg" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
             <div class="animated-title-container" style="width: auto; text-align: right; order: 3;">
                 <h1 class="animated-title">الهوست العربي<br><span class="subtitle-ps4">PS4 9.00</span></h1>
             </div>
@@ -42,9 +44,9 @@
         <div class="footer">
             <div class="footer-content">
                 <div class="footer-item footer-stats">
-                    <span class="footer-highlight">نجاح = </span><span class="success-count" id="passCounter"></span>
+                    <span class="footer-highlight">مبروك = </span><span class="success-count glow-text" id="passCounter"></span>
                     <span class="footer-divider">|</span>
-                    <span class="footer-highlight">فشل = </span><span class="fail-count" id="failCounter"></span>
+                    <span class="footer-highlight">اوبس!! = </span><span class="fail-count glow-text" id="failCounter"></span>
                 </div>
                 
                 <div class="footer-item">
